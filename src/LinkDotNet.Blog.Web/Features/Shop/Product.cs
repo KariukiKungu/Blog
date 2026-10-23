@@ -2,7 +2,7 @@ namespace LinkDotNet.Blog.Web.Features.Shop;
 
 public sealed class Product
 {
-    public int Id { get; init; }
+    public string Id { get; init; } = string.Empty;
     public string Name { get; init; } = string.Empty;
     public string Slug { get; init; } = string.Empty;
     public string Description { get; init; } = string.Empty;

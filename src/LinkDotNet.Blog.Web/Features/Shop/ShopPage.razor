@@ -25,7 +25,10 @@
 
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text text-muted">@product.Description</p>
-                        <button class="btn btn-primary mt-auto" type="button" @onclick="() => AddToCart(product.Id)">Add to cart</button>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a class="btn btn-outline-secondary" href="/shop/@product.Slug">Details</a>
+                            <button class="btn btn-primary flex-grow-1" type="button" @onclick="() => AddToCart(product.Id)">Add to cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,7 +44,7 @@
         products = ShopService.GetProducts();
     }
 
-    private async Task AddToCart(int productId)
+    private async Task AddToCart(string productId)
     {
         await CartService.AddItemAsync(productId);
     }

@@ -1,6 +1,7 @@
 @page "/cart"
 @using LinkDotNet.Blog.Web.Features.Shop
 @inject ICartService CartService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Cart</PageTitle>
 
@@ -86,20 +87,20 @@
         total = await CartService.GetTotalAsync();
     }
 
-    private async Task Increase(int productId)
+    private async Task Increase(string productId)
     {
         await CartService.AddItemAsync(productId);
         await LoadCartAsync();
     }
 
-    private async Task Decrease(int productId, int currentQuantity)
+    private async Task Decrease(string productId, int currentQuantity)
     {
         var nextQuantity = currentQuantity - 1;
         await CartService.UpdateQuantityAsync(productId, nextQuantity);
         await LoadCartAsync();
     }
 
-    private async Task Remove(int productId)
+    private async Task Remove(string productId)
     {
         await CartService.RemoveItemAsync(productId);
         await LoadCartAsync();
@@ -107,7 +108,6 @@
 
     private async Task Checkout()
     {
-        await CartService.ClearAsync();
-        await LoadCartAsync();
+        NavigationManager.NavigateTo("/checkout");
     }
 }

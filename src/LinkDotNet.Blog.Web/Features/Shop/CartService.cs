@@ -20,9 +20,9 @@ public sealed class CartService : ICartService
         return await localStorageService.GetItemAsync<List<CartItem>>(CartStorageKey);
     }
 
-    public async Task AddItemAsync(int productId, int quantity = 1)
+    public async Task AddItemAsync(string productId, int quantity = 1)
     {
-        if (quantity <= 0)
+        if (string.IsNullOrWhiteSpace(productId) || quantity <= 0)
         {
             return;
         }
@@ -57,8 +57,13 @@ public sealed class CartService : ICartService
         await localStorageService.SetItemAsync(CartStorageKey, cart);
     }
 
-    public async Task UpdateQuantityAsync(int productId, int quantity)
+    public async Task UpdateQuantityAsync(string productId, int quantity)
     {
+        if (string.IsNullOrWhiteSpace(productId))
+        {
+            return;
+        }
+
         if (quantity <= 0)
         {
             await RemoveItemAsync(productId);
@@ -78,8 +83,13 @@ public sealed class CartService : ICartService
         await localStorageService.SetItemAsync(CartStorageKey, cart);
     }
 
-    public async Task RemoveItemAsync(int productId)
+    public async Task RemoveItemAsync(string productId)
     {
+        if (string.IsNullOrWhiteSpace(productId))
+        {
+            return;
+        }
+
         await EnsureCartExistsAsync();
         var cart = await localStorageService.GetItemAsync<List<CartItem>>(CartStorageKey);
         var item = cart.FirstOrDefault(entry => entry.ProductId == productId);

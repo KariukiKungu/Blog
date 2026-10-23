@@ -1,3 +1,5 @@
+using LinkDotNet.Blog.Web.Features.Shop;
+
 namespace LinkDotNet.Blog.Web.Features.Shop;
 
 public sealed class ShopService : IShopService
@@ -6,7 +8,7 @@ public sealed class ShopService : IShopService
     [
         new Product
         {
-            Id = 1,
+            Id = "prod-1",
             Name = "Starter Notebook",
             Slug = "starter-notebook",
             Category = "Office",
@@ -16,7 +18,7 @@ public sealed class ShopService : IShopService
         },
         new Product
         {
-            Id = 2,
+            Id = "prod-2",
             Name = "Coffee Mug",
             Slug = "coffee-mug",
             Category = "Lifestyle",
@@ -26,7 +28,7 @@ public sealed class ShopService : IShopService
         },
         new Product
         {
-            Id = 3,
+            Id = "prod-3",
             Name = "Travel Bottle",
             Slug = "travel-bottle",
             Category = "Wellness",
@@ -36,7 +38,7 @@ public sealed class ShopService : IShopService
         },
         new Product
         {
-            Id = 4,
+            Id = "prod-4",
             Name = "Desk Lamp",
             Slug = "desk-lamp",
             Category = "Home",
